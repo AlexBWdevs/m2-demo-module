@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="wdevs_inquiremanager_inquires" resource="default" engine="innodb" comment="Account Inquire List">
+        <column xsi:type="int" name="inquire_id" padding="20" unsigned="true" nullable="false" identity="true" comment="Inquire Id"/>
+        <column xsi:type="varchar" name="firstname" nullable="false" length="25" comment="Firstname"/>
+        <column xsi:type="varchar" name="lastname" nullable="false" length="25" comment="Lastname"/>
+        <column xsi:type="varchar" name="company_name" nullable="false" length="100" comment="Company"/>
+        <column xsi:type="varchar" name="account_number" nullable="false" length="25" comment="Account Number"/>
+        <column xsi:type="varchar" name="city" nullable="false" length="25" comment="City"/>
+        <column xsi:type="varchar" name="street_address" nullable="false" length="255" comment="Street Address"/>
+        <column xsi:type="varchar" name="street_address_2" nullable="false" length="255" comment="Street Address 2"/>
+        <column xsi:type="varchar" name="state" nullable="false" length="25" comment="State"/>
+        <column xsi:type="smallint" name="region" padding="5" unsigned="true" nullable="false" identity="false" comment="Region"/>
+        <column xsi:type="varchar" name="country" nullable="false" length="25" comment="Country"/>
+        <column xsi:type="varchar" name="zip" nullable="false" length="25" comment="Zip"/>
+        <column xsi:type="varchar" name="phone" nullable="false" length="15" comment="Phone"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="100" comment="Email"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store Id"/>
+        <column xsi:type="smallint" name="website" padding="5" unsigned="true" nullable="false" identity="false" comment="Website"/>
+        <column xsi:type="varchar" name="branch_group" nullable="false" length="100" comment="Branch Group"/>
+        <column xsi:type="varchar" name="time_type" nullable="false" length="25" comment="Time Type"/>
+        <column xsi:type="text" name="description" nullable="false" comment="Business Description"/>
+        <column xsi:type="varchar" name="county" nullable="false" length="25" comment="County"/>
+        <column xsi:type="varchar" name="attachment_filename" nullable="true" length="255" comment="Filename"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" default="CURRENT_TIMESTAMP" comment="Inquire Created At"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Created"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="inquire_id"/>
+        </constraint>
+        <index referenceId="WDEVS_INQUIREMANAGER_INQUIRES_EMAIL" indexType="btree">
+            <column name="email"/>
+        </index>
+        <index referenceId="WDEVS_INQUIREMANAGER_INQUIRES_ACCOUNT_NUMBER" indexType="btree">
+            <column name="account_number"/>
+        </index>
+    </table>
+</schema>

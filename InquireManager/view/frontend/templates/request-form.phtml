@@ -1,0 +1,132 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php
+/* @var $block \Wdevs\InquireManager\Block\RequestForm */
+?>
+<div class="form-notes">
+    <div class="form-description"><?= /* @escapeNotVerified */ $block->getFormDescription(); ?></div>
+    <div class="form-require-notes"><?= /* @escapeNotVerified */ __('* Required Fields') ?></div>
+</div>
+<div class="container">
+    <div class="container-content">
+        <form class="request-account-form form" method="post" enctype="multipart/form-data" action="<?= /* @escapeNotVerified */ $block->getFormAction(); ?>"
+            data-hasrequired="<?php /* @escapeNotVerified */ echo __('*') ?>"
+            data-mage-init='{"validation":{}}'>
+            <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+            <div class="form-group">
+                <h3 class="form-group_title"><?= /* @escapeNotVerified */ __('Your Information') ?></h3>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="field required" type="text"  value="<?= /* @escapeNotVerified */ $block->getFirstname() ?>" name="firstname" placeholder="<?= /* @escapeNotVerified */ __('First Name') ?>">
+                    </div>
+                    <div class="form-control required">
+                        <input class="field required" type="text" value="<?= /* @escapeNotVerified */ $block->getLastname() ?>" name="lastname" placeholder="<?= /* @escapeNotVerified */ __('Last Name') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="required validate-email" type="email" value="<?= /* @escapeNotVerified */ $block->getEmail() ?>" name="email" placeholder="<?= /* @escapeNotVerified */ __('Email Address') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control">
+                        <input type="text" class="validate-phoneLax" id="request-account-phone" value="<?= /* @escapeNotVerified */ $block->getPhone() ?>" name="phone" placeholder="<?= /* @escapeNotVerified */ __('Phone Number') ?>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="form-group_title"><?= /* @escapeNotVerified */ __('Company Information') ?></h3>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="field required" type="text" value="<?= /* @escapeNotVerified */ $block->getCompanyName() ?>" name="company_name" placeholder="<?= /* @escapeNotVerified */ __('Company Name') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="field required" type="text" value="<?= /* @escapeNotVerified */ $block->getStreetAddress() ?>" name="street_address" placeholder="<?= /* @escapeNotVerified */ __('Street Address') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control">
+                        <input class="field" type="text" value="<?= /* @escapeNotVerified */ $block->getStreetAddress2() ?>" name="street_address_2" placeholder="<?= /* @escapeNotVerified */ __('Street Address 2') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="field required" type="text" value="<?= /* @escapeNotVerified */ $block->getCity() ?>" name="city" placeholder="<?= /* @escapeNotVerified */ __('City') ?>">
+                    </div>
+                    <div class="form-control required">
+                        <input class="field required validate-zip-us" type="text" value="<?= /* @escapeNotVerified */ $block->getZip() ?>" name="zip" placeholder="<?= /* @escapeNotVerified */ __('Zip Code') ?>">
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control country">
+                        <?= $block->getCountriesHtml() ?>
+                    </div>
+                    <div class="form-control is-dropdown required region">
+                        <?= $block->getRegionHtml() ?>
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control required">
+                        <input class="field required" type="text" value="<?= /* @escapeNotVerified */ $block->getAccountNumber() ?>" name="account_number" placeholder="<?= /* @escapeNotVerified */ __('Account Number') ?>">
+                    </div>
+                    <div class="form-control"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h3 class="form-group_title"><?= /* @escapeNotVerified */ __('Preferred Contact Time') ?></h3>
+                <div class="input-holder">
+                    <div class="form-control is-dropdown required">
+                        <select class="field required" type="text" name="time_type">
+                            <?php foreach ($this->getContactTimeOptions() as $_option): ?>
+                                <?php $selectedHtml = $block->isOptionSelected($_option, $block->getTimeType()); ?>
+                                <option value="<?= /* @escapeNotVerified */ $_option['value'] ?>"<?= /* @escapeNotVerified */ $selectedHtml ?>><?= /* @escapeNotVerified */ $_option['label'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-holder">
+                    <div class="form-control">
+                        <textarea class="field" type="textarea" name="description" placeholder="<?= /* @escapeNotVerified */ __('Please enter any comments') ?>"><?= /* @escapeNotVerified */ $block->getDescription() ?></textarea>
+                    </div>
+                </div>
+                <?php if ($this->isFileUploaderEnabled()): ?>
+                <div class="input-holder">
+                    <div class="form-control">
+                        <input class="file-attachment" type="file" name="attachment">
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?= $block->getChildHtml('form_additional_info') ?>
+                <div class="form-info">
+                    <?= __('<span class="decor">*</span> This form collects your name, email address and other personal information. Please read our Privacy Notice for information on how we protect and manage your personal data. By completing this form and submitting your information, you confirm that you have reviewed, understood and accepted our privacy terms as well as our cookie terms.') ?>
+                </div>
+            </div>
+
+            <button type="submit" class="btn primary-btn"><?= /* @escapeNotVerified */ $block->getSubmitButtonText() ?></button>
+        </form>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Wdevs_InquireManager/js/request-form/update-state-list": "<?= $this->getCountryAction() ?>"
+            }
+        }
+    </script>
+    </div>
+    <div class="container-sidebar">
+        <p class="sidebar_text"><?= __('Please Note: After you register, we may contact you for extra information to activate your account. This verification process usually takes 1–2 business days. You will receive an account activation email once this process is complete.') ?></p>
+        <div class="sidebar-login">
+            <h3 class="sidebar-login_title"><?= __('Already a Customer?') ?></h3>
+            <p class="sidebar-login_text"><?= __('Access your account, or recover your password.') ?></p>
+            <div class="sidebar-login_buttons-group">
+                <a href="<?= $block->getUrl('customer/account/login', ['_secure' => true]) ?>" class="btn primary-btn"><?= __('Sign In') ?></a>
+                <a href="<?= $block->getUrl('customer/account/forgotpassword', ['_secure' => true]) ?>"><?= __('Forgot Password?') ?></a>
+            </div>
+        </div>
+    </div>
+</div>

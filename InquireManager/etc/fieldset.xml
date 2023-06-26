@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        <fieldset id="inquire_manager_account_request">
+            <field name="website">
+                <aspect name="to_customer_account" targetField="website_id" />
+            </field>
+            <field name="store_id">
+                <aspect name="to_customer_account" targetField="store_id" />
+            </field>
+            <field name="firstname">
+                <aspect name="to_customer_account" targetField="firstname" />
+                <aspect name="to_customer_address" targetField="firstname" />
+            </field>
+            <field name="lastname">
+                <aspect name="to_customer_account" targetField="lastname" />
+                <aspect name="to_customer_address" targetField="lastname" />
+            </field>
+            <field name="email">
+                <aspect name="to_customer_account" targetField="email" />
+            </field>
+            <field name="company_name">
+                <aspect name="to_customer_address" targetField="company" />
+            </field>
+        </fieldset>
+    </scope>
+</config>        

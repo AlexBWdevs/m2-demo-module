@@ -1,0 +1,32 @@
+<!--@subject {{trans "New Request for Account" }} @-->
+<!--@vars {
+"var customer.name":"Customer Name",
+"var customer.firstname":"Customer Firstname",
+"var customer.lastname":"Customer Lastname",
+"var customer.company_name":"Company Name",
+"var customer.street_address":"Street Address"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<tr>
+    <td class="email-content">
+        <h3>Hello,</h3>
+        <p>{{var customer.name}} has submitted an Account Request and details are below.</p>
+        <table border="0" width="100%">
+            <tr>
+                <td>Firstname:</td>
+                <td>{{var customer.firstname}}</td>
+            </tr>
+            <tr>
+                <td>Lastname:</td>
+                <td>{{var customer.lastname}}</td>
+            </tr>
+            <tr>
+                <td>Company Name:</td>
+                <td>{{var customer.company_name}}</td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+{{template config_path="design/email/footer_template"}}

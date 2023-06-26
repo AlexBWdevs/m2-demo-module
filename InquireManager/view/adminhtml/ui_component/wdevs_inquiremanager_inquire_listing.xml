@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">wdevs_inquiremanager_inquire_listing.wdevs_inquiremanager_inquires_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>account_inquire_columns</spinner>
+        <deps>
+            <dep>wdevs_inquiremanager_inquire_listing.wdevs_inquiremanager_inquires_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="wdevs_inquiremanager_inquires_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">inquire_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Wdevs_InquireManager::inquiremanager</aclResource>
+        <dataProvider class="Wdevs\InquireManager\Ui\Component\DataProvider" name="wdevs_inquiremanager_inquires_listing_data_source">
+            <settings>
+                <requestFieldName>inquire_id</requestFieldName>
+                <primaryFieldName>inquire_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>false</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <!-- <filterSearch name="fulltext"/> -->
+        <paging name="listing_paging"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+    </listingToolbar>
+    <columns name="account_inquire_columns">
+        <column name="inquire_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="company_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Company Name</label>
+            </settings>
+        </column>
+        <column name="account_number">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Account Number</label>
+            </settings>
+        </column>
+        <column name="firstname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">First Name</label>
+            </settings>
+        </column>
+        <column name="lastname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Last Name</label>
+            </settings>
+        </column>
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+            </settings>
+        </column>
+        <column name="website" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="Wdevs\InquireManager\Model\WebsiteSource"/>
+                <label translate="true">Requested Branch</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <timezone>false</timezone>
+                <filter>dateRange</filter>
+                <dateFormat>MMM d, y</dateFormat>
+                <dataType>date</dataType>
+                <label translate="true">Requested Date</label>
+            </settings>
+        </column>
+        <column name="status" class="Wdevs\InquireManager\Ui\Component\Listing\Column\CustomerStatus">
+            <settings>
+                <filter>select</filter>
+                <options class="Wdevs\InquireManager\Model\OptionSource\RequestStatus"/>
+                <dataType>select</dataType>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Request Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Wdevs\InquireManager\Ui\Component\Listing\Column\Actions">
+            <settings>
+                <indexField>inquire_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

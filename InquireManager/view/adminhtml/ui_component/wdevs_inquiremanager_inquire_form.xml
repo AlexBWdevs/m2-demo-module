@@ -1,0 +1,269 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">wdevs_inquiremanager_inquire_form.wdevs_inquiremanager_inquire_form_data_source</item>
+        </item>
+        <item name="label" translate="true" xsi:type="string">Account Request Information</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button class="Wdevs\InquireManager\Block\Adminhtml\AccountInquire\Edit\BackButton" name="back"/>
+            <button class="Wdevs\InquireManager\Block\Adminhtml\AccountInquire\Edit\DeleteButton" name="delete"/>
+            <button class="Wdevs\InquireManager\Block\Adminhtml\AccountInquire\Edit\SaveButton" name="save"/>
+            <button class="Wdevs\InquireManager\Block\Adminhtml\AccountInquire\Edit\ValidateButton" name="validate"/>
+            <button class="Wdevs\InquireManager\Block\Adminhtml\AccountInquire\Edit\CreateCustomerButton" name="create_customer"/>
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>wdevs_inquiremanager_inquire_form.wdevs_inquiremanager_inquire_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="wdevs_inquiremanager_inquire_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Wdevs\InquireManager\Model\AccountInquire\DataProvider" name="wdevs_inquiremanager_inquire_form_data_source">
+            <settings>
+                <requestFieldName>inquire_id</requestFieldName>
+                <primaryFieldName>inquire_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="customer">
+        <settings>
+            <label>Customer Information</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="status" formElement="select" sortOrder="15">
+            <settings>
+                <label translate="true">Request Status</label>
+                <elementTmpl>Wdevs_InquireManager/form/element/status</elementTmpl>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Wdevs\InquireManager\Model\OptionSource\RequestStatus"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="created_at" formElement="date" sortOrder="20">
+            <settings>
+                <label translate="true">Requested Date</label>
+                <elementTmpl>ui/form/element/html</elementTmpl>
+            </settings>
+        </field>
+        
+        <field name="account_number" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true"> Account Number</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="website" formElement="select" component="Wdevs_InquireManager/js/form/element/select" sortOrder="40">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Requested Branch</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <tooltip>
+                    <description>Website, from which the client send request</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Customer\Model\Customer\Attribute\Source\Website"/>
+                        <filterBy>
+                            <field>branch_group_id</field>
+                            <target>${ $.provider }:${ $.parentScope }.branch_group</target>
+                        </filterBy>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="firstname" formElement="input" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Firstname</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="lastname" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Lastname</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="email" formElement="input" sortOrder="80">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Email</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="phone" formElement="input" sortOrder="100">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Phone</label>
+                <validation>
+                    <rule name="validate-phoneLax" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="company_information">
+        <settings>
+            <label>Company Information</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="company_name" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Company Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="street_address" formElement="input" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Street Address</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="street_address_2" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Street Address 2</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="city" formElement="input" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">City</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        
+        <field name="region_id" formElement="select" component="Magento_Customer/js/form/element/region" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="regionScope" xsi:type="string">data.regionScope</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>region</dataScope>
+                <label translate="true">State</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Customer\Model\ResourceModel\Address\Attribute\Source\Region"/>
+                        <filterBy>
+                            <field>country_id</field>
+                            <target>${ $.provider }:${ $.parentScope }.country</target>
+                        </filterBy>
+                        <customEntry>state</customEntry>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="county" formElement="input" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">County</label>
+            </settings>
+        </field>
+        <field name="zip" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Zip Code</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-zip-us" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="country_id" formElement="select" component="Magento_Customer/js/form/element/country" sortOrder="80">
+             <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="countryScope" xsi:type="string">data.countryScope</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>country</dataScope>
+                <label translate="true">Country</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Customer\Model\ResourceModel\Address\Attribute\Source\CountryWithWebsites"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="request_information">
+        <settings>
+            <label>Request Information</label>
+            <dataScope>data</dataScope>
+        </settings>
+        <field name="time_type" formElement="select" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Time Type</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Wdevs\InquireManager\Model\OptionSource\ContactTimeOptionsProvider"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="description" formElement="textarea" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

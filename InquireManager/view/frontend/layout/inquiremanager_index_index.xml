@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Request Account</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Wdevs\InquireManager\Block\RequestForm" name="wdevs.inquiremanager.form"  template="Wdevs_InquireManager::request-form.phtml">
+                <container name="form.additional.info" as="form_additional_info">
+                    <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                           name="inquiremanager-recaptcha"
+                           after="-"
+                           template="Wdevs_InquireManager::recaptcha.phtml"
+                           cacheable="false"
+                           ifconfig="recaptcha_frontend/type_for/enabled_request_account">
+                        <arguments>
+                            <argument name="recaptcha_for" xsi:type="string">enabled_request_account</argument>
+                            <argument name="jsLayout" xsi:type="array">
+                                <item name="components" xsi:type="array">
+                                    <item name="recaptcha" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                                    </item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

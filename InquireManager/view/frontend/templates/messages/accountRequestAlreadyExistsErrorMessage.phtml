@@ -1,0 +1,4 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<?= $block->escapeHtml(__('There is already an account request with this email address. If you have not received a notification about the creation of an account or you cannot enter your account, please contact us.', $block->getData('url')), ['a']);

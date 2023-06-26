@@ -1,0 +1,37 @@
+{
+    "wdevs_inquiremanager_inquires": {
+        "column": {
+            "inquire_id": true,
+            "firstname": true,
+            "lastname": true,
+            "company_name": true,
+            "account_number": true,
+            "city": true,
+            "street_address": true,
+            "street_address_2": true,
+            "state": true,
+            "region": true,
+            "country": true,
+            "zip": true,
+            "phone": true,
+            "email": true,
+            "store_id": true,
+            "website": true,
+            "branch_group": true,
+            "time_type": true,
+            "description": true,
+            "county": true,
+            "attachment_filename": true,
+            "created_at": true,
+            "is_created": false,
+            "status": true
+        },
+        "index": {
+            "WDEVS_INQUIREMANAGER_INQUIRES_EMAIL": true,
+            "WDEVS_INQUIREMANAGER_INQUIRES_ACCOUNT_NUMBER": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <inquiremanager>
+            <general>
+                <enable_top_link>1</enable_top_link>
+                <heading>Request Account</heading>
+                <description>Please provide us with the following information to set up your account:</description>
+                <submit_button_text>Submit Account Request</submit_button_text>
+                <!-- <success_page_description>Thank you for contacting us.</success_page_description> -->
+                <default_customer_group>1</default_customer_group>
+                <enable_file_upload>0</enable_file_upload>
+            </general>
+            <meta>
+                <meta_title>Request Account</meta_title>
+                <meta_description>Request Account Form</meta_description>
+                <meta_keywords>dealer,wholesale,inquiry,enquiry</meta_keywords>
+            </meta>
+            <email_templates>
+                <request_account_owner_subject>New Request for Account</request_account_owner_subject>
+                <request_account_owner_email_template>inquiremanager_email_templates_request_account_owner_email_template</request_account_owner_email_template>
+                <request_account_owner_send_to>0</request_account_owner_send_to>
+                <request_account_customer_subject>Thank you for Contacting Us.</request_account_customer_subject>
+                <request_account_customer_email_template>inquiremanager_email_templates_request_account_customer_email_template</request_account_customer_email_template>
+                <create_account_after_customer_subject>Registration Details of Request Account</create_account_after_customer_subject>
+                <!-- <create_account_after_customer_email_template>inquiremanager_email_templates_create_account_after_customer_email_template</create_account_after_customer_email_template> -->
+            </email_templates>
+        </inquiremanager>
+        <recaptcha_frontend>
+            <type_for>
+                <enabled_request_account>recaptcha_v3</enabled_request_account>
+            </type_for>
+        </recaptcha_frontend>
+    </default>
+</config>

@@ -1,0 +1,20 @@
+<!--@subject {{trans "Thank you for Contacting Us." }} @-->
+<!--@vars {
+"var customer.name":"Customer Name"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<tr>
+    <td class="email-content">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="email-content-line">
+                    {{trans "Dear %name," name=$customer.name}}<br /><br />
+                    {{trans "Thank you for submitting your account request ....."}}
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+{{template config_path="design/email/footer_template"}}

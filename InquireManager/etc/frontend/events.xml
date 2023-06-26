@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_inquiremanager_inquire_save">
+        <observer name="wdevs_inquiremanager_recaptcha" instance="Wdevs\InquireManager\Observer\InquireFormObserver"/>
+    </event>
+</config>

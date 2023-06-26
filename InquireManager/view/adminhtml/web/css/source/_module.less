@@ -1,0 +1,56 @@
+//
+//  Inquire Manager
+//  _____________________________________________
+
+@request-status-requested-background: #fffbbb;
+@request-status-requested-color: #e22626;
+@request-status-requested-border-color: #e22626;
+
+@request-status-validated-background: #fffbbb;
+@request-status-validated-color: #185b00;
+@request-status-validated-border-color: #5b8116;
+
+@request-status-invalidated-background: #f9d4d4;
+@request-status-invalidated-color: #e22626;
+@request-status-invalidated-border-color: #e22626;
+
+@request-status-created-background: #d0e5a9;
+@request-status-created-color: #185b00;
+@request-status-created-border-color: #5b8116;
+
+.request-status-requested,
+.request-status-validated,
+.request-status-invalidated,
+.request-status-created {
+    background: @request-status-requested-background none repeat scroll 0 0;
+    color: @request-status-requested-color;
+    border: 1px solid @request-status-requested-border-color;
+    display: block;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+    
+    &.admin__field-value {
+        padding: 7px 3px;
+    }
+}
+
+.request-status-validated {
+    background: @request-status-validated-background none repeat scroll 0 0;
+    color: @request-status-validated-color;
+    border-color: @request-status-validated-border-color;
+}
+
+.request-status-invalidated {
+    background: @request-status-invalidated-background none repeat scroll 0 0;
+    color: @request-status-invalidated-color;
+    border: 1px solid @request-status-invalidated-border-color;
+}
+
+.request-status-created {
+    background: @request-status-created-background none repeat scroll 0 0;
+    color: @request-status-created-color;
+    border-color: @request-status-created-border-color;
+}

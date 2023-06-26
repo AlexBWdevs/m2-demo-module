@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Wdevs\InquireManager\Model\Session\Storage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">inquiremanager</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wdevs\InquireManager\Model\Session" type="Magento\Framework\Session\Generic">
+        <arguments>
+            <argument name="storage" xsi:type="object">Wdevs\InquireManager\Model\Session\Storage</argument>
+        </arguments>
+    </virtualType>
+    <type name="Wdevs\InquireManager\Controller\Index\Index">
+        <arguments>
+            <argument name="formSession" xsi:type="object">Wdevs\InquireManager\Model\Session</argument>
+        </arguments>
+    </type>
+    <type name="Wdevs\InquireManager\Controller\Inquire\Save">
+        <arguments>
+            <argument name="formSession" xsi:type="object">Wdevs\InquireManager\Model\Session</argument>
+        </arguments>
+    </type>
+    <type name="Wdevs\InquireManager\Block\RequestForm">
+        <arguments>
+            <argument name="formSession" xsi:type="object">Wdevs\InquireManager\Model\Session</argument>
+        </arguments>
+    </type>
+    <type name="Wdevs\InquireManager\InquireData\InquireForm">
+        <arguments>
+            <argument name="formSession" xsi:type="object">Wdevs\InquireManager\Model\Session</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Model\Registration">
+        <plugin name="CustomerRegistrationDisable" type="Wdevs\InquireManager\Plugin\Customer\Model\RegistrationPlugin" />
+    </type>
+
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="accountRequestAlreadyExistsErrorMessage" xsi:type="array">
+                    <item name="renderer" xsi:type="const">\Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Wdevs_InquireManager::messages/accountRequestAlreadyExistsErrorMessage.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="inquiremanager" translate="label" type="text" sortOrder="135" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Wdevs_InquireManager::config</resource>
+            <class>separator-top</class>
+            <label>Request Account Configuration</label>
+            <tab>customer</tab>
+
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Options</label>
+                <field id="enable_top_link" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Top Link</label>
+                    <comment>Display 'Request Account' on the top instead of 'Register'</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="heading" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading</label>
+                    <comment>Specify Form Title</comment>
+                </field>
+                <field id="description" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Description</label>
+                    <comment>Specify Page Description</comment>
+                </field>
+                <field id="submit_button_text" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Submit button text</label>
+                </field>
+                <!-- <field id="success_page_description" translate="label comment" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success Page Description</label>
+                </field> -->
+                <field id="default_customer_group" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Customer Group</label>
+                    <comment>Specify Default Customer Group</comment>
+                    <source_model>Magento\Customer\Model\Config\Source\Group</source_model>
+                </field>
+                <field id="enable_file_upload" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable File Upload</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="meta" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Meta Data Options</label>
+                <field id="meta_title" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Title</label>
+                </field>
+                <field id="meta_description" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Description</label>
+                </field>
+                <field id="meta_keywords" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Meta Keywords</label>
+                </field>
+            </group>
+
+            <group id="email_templates" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Templates</label>
+                <field id="heading_1" translate="label" sortOrder="10" showInStore="1" showInWebsite="1" showInDefault="1">
+                    <label>Request Account Owner Email Template</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="notice_1" translate="label comment" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>After submit dealer inquiry form Owner get email notification so you can set Email Subject and Email template here.</label>
+                    <frontend_model>Wdevs\InquireManager\Block\System\Config\Form\Field\Notice</frontend_model>
+                </field>
+                <field id="request_account_owner_subject" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Subject</label>
+                </field>
+                <field id="request_account_owner_email_template" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="request_account_owner_send_to" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Send to</label>
+                    <source_model>Wdevs\InquireManager\Model\OptionSource\EmailSendToOptionsProvider</source_model>
+                </field>
+                <field id="request_account_owner_custom_owner_email" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Custom Owner Email</label>
+                    <depends>
+                        <field id="*/*/request_account_owner_send_to">1</field>
+                    </depends>
+                </field>
+                <field id="heading_2" translate="label" sortOrder="60" showInStore="1" showInWebsite="1" showInDefault="1">
+                    <label>Request Account Customer Email Template</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="notice_2" translate="label comment" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>After submit dealer inquiry form customer get email notification so you can set Email Subject and Email template here.</label>
+                    <frontend_model>Wdevs\InquireManager\Block\System\Config\Form\Field\Notice</frontend_model>
+                </field>
+                <field id="request_account_customer_subject" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Subject</label>
+                </field>
+                <field id="request_account_customer_email_template" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <!-- <field id="heading_3" translate="label" sortOrder="100" showInStore="1" showInWebsite="1" showInDefault="1">
+                    <label>Create Account After Customer Email Template</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="notice_3" translate="label comment" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>When admin click on create customer button. Customer get email notification of his username and password. So for that email you can set email Subject and email template here.</label>
+                    <frontend_model>Wdevs\InquireManager\Block\System\Config\Form\Field\Notice</frontend_model>
+                </field>
+                <field id="create_account_after_customer_subject" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Subject</label>
+                </field> -->
+                <!-- <field id="create_account_after_customer_email_template" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field> -->
+            </group>
+        </section>
+        <section id="recaptcha_frontend">
+            <group id="type_for">
+                <field id="enabled_request_account" translate="label" type="select" sortOrder="300" showInDefault="1"
+                       showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Use in Request Account Form</label>
+                    <source_model>Magento\ReCaptchaAdminUi\Model\OptionSource\Type</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="inquiremanager_email_templates_request_account_customer_email_template" label="New Request for Account (Customer)" file="request_account_customer.html" type="html" module="Wdevs_InquireManager" area="frontend"/>
+    <template id="inquiremanager_email_templates_request_account_owner_email_template" label="New Request for Account (Owner)" file="request_account_owner.html" type="html" module="Wdevs_InquireManager" area="frontend"/>
+</config>

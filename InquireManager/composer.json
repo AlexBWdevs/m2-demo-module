@@ -1,0 +1,23 @@
+{
+	"name" : "Wdevs/InquireManager",
+	"description" : "Inquire Manager module",
+	"config" : {
+		"sort-packages" : true
+	},
+	"require" : {
+		"magento/framework" : "*",
+		"XXX/Customer" : "*",
+		"XXX/CustomerSxapi" : "*",
+		"XXX/StoreBranches" : "*"
+	},
+	"type" : "magento2-module",
+	"autoload" : {
+		"files" : [
+			"registration.php"
+		],
+		"psr-4" : {
+			"Wdevs\\InquireManager\\" : ""
+		}
+	},
+	"version" : "1.0.0"
+}

@@ -1,0 +1,13 @@
+<span class="admin__field-value"
+      data-bind="
+        html: getPreview(),
+        css: {
+            'request-status-requested': value() == '1',
+            'request-status-validated': value() == '2',
+            'request-status-invalidated': value() == '3',
+            'request-status-created': value() == '4',
+        },
+        attr: {
+            name: inputName,
+            id: uid
+    }"/>

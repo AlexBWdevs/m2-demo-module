@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Wdevs\InquireManager\Api\ConfigInterface" type="Wdevs\InquireManager\Model\Config\Config" />
+    <preference for="Wdevs\InquireManager\Api\AccountInquireManagementInterface" type="Wdevs\InquireManager\Model\AccountInquireManagement" />
+    <preference for="Wdevs\InquireManager\Api\AccountInquireRepositoryInterface" type="Wdevs\InquireManager\Model\AccountInquireRepository" />
+    <preference for="Wdevs\InquireManager\Api\Data\AccountInquireSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Wdevs\InquireManager\Api\Data\AccountInquireInterface" type="Wdevs\InquireManager\Model\AccountInquire" />
+    <preference for="Wdevs\InquireManager\Model\EmailNotificationInterface" type="Wdevs\InquireManager\Model\EmailNotification" />
+    <!-- <preference for="Magento\Framework\Mail\Template\TransportBuilder" type="\Wdevs\InquireManager\Model\Email\TransportBuilder" /> -->
+
+    <type name="Wdevs\InquireManager\Model\ResourceModel\AccountInquire\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wdevs_inquiremanager_inquires</argument>
+            <argument name="resourceModel" xsi:type="string">Wdevs\InquireManager\Model\ResourceModel\AccountInquire</argument>
+            <argument name="eventPrefix" xsi:type="string">inquiremanager_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">inquiremanager_collection</argument>
+        </arguments>
+    </type>
+    <virtualType name="AccountInquireGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="wdevs_inquiremanager_inquires_listing_data_source" xsi:type="string">Wdevs\InquireManager\Model\ResourceModel\AccountInquire\Grid\Collection</item>
+            </argument>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">Wdevs\InquireManager\Ui\Component\Listing\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Wdevs\InquireManager\Ui\Component\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">Wdevs\InquireManager\Ui\Component\Listing\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Wdevs\InquireManager\Controller\Adminhtml\Inquire\CreateCustomer">
+        <arguments>
+            <argument name="customerServiceManager" xsi:type="object">CustomerSxapiServiceManager</argument>
+        </arguments>
+    </type>
+    <virtualType name="Wdevs\InquireManager\Model\WebsiteSource" type="Magento\Framework\App\Scope\Source">
+        <arguments>
+            <argument name="scope" xsi:type="const">Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE</argument>
+        </arguments>
+    </virtualType>
+    <type name="Wdevs\MailTemplates\Model\EmailTemplatesInstaller">
+        <arguments>
+            <argument name="fixtures" xsi:type="array">
+                <item name="inquiremanager_email_templates_request_account_owner_email_template" xsi:type="array">
+                    <item name="template_subject" xsi:type="string"><![CDATA[{{trans "New Request for Account" }}]]></item>
+                    <item name="template_code" xsi:type="string"><![CDATA[Request Account (Admin)]]></item>
+                    <item name="template_file" xsi:type="string"><![CDATA[Wdevs_InquireManager::view/frontend/email/request_account_owner.html]]></item>
+                    <item name="template_styles" xsi:type="string"><![CDATA[]]></item>
+                    <item name="orig_template_code" xsi:type="string"><![CDATA[inquiremanager_email_templates_request_account_owner_email_template]]></item>
+                    <item name="orig_template_variables" xsi:type="string"><![CDATA[]]></item>
+                    <item name="store_config_path" xsi:type="string"><![CDATA[inquiremanager/email_templates/request_account_owner_email_template]]></item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
